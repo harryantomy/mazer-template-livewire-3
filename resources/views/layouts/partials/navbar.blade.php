@@ -85,8 +85,8 @@ new class extends Component {
                                 {{-- Harry Antomy --}}
                             </h6>
                             <p class="mb-0 text-sm text-gray-600">
-                                {{ Str::ucfirst(Auth::user()->role) }}
-                                {{-- Super Admin --}}
+                                {{ Str::ucfirst(Auth::user()->roles->first()->name) }}
+                                Super Admin
                             </p>
                         </div>
                         <div class="user-img d-flex align-items-center">

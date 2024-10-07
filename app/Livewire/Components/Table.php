@@ -23,8 +23,9 @@ class Table extends Component
     public $conditions = [];
     public $showRowNumbers = true;
     public $customColumns = [];
+    public $withRelations = [];
 
-    public function mount($model, $columns, $searchColumns = [], $sortColumn = '', $actions = [], $conditions = [], $showRowNumbers = true, $customColumns = [])
+    public function mount($model, $columns, $searchColumns = [], $sortColumn = '', $actions = [], $conditions = [], $showRowNumbers = true, $customColumns = [],  $withRelations = [])
     {
         $this->model = $model;
         $this->columns = $columns;
@@ -34,6 +35,7 @@ class Table extends Component
         $this->conditions = $conditions;
         $this->showRowNumbers = $showRowNumbers;
         $this->customColumns = $customColumns;
+        $this->withRelations = $withRelations;
     }
 
     public function sortBy($column)
@@ -49,6 +51,11 @@ class Table extends Component
     public function render()
     {
         $query = $this->model::query();
+
+        // Eager load relasi jika ada
+        if (!empty($this->withRelations)) {
+            $query->with($this->withRelations); // Load relasi berdasarkan input
+        }
 
         // Apply custom conditions
         foreach ($this->conditions as $condition) {

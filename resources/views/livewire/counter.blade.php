@@ -2,10 +2,10 @@
     <div class="page-heading">
         <div class="page-title">
             <div class="row">
-                <div class="col-12 col-md-6 order-md-1 order-last mb-3">
+                <div class="order-last mb-3 col-12 col-md-6 order-md-1">
                     <h3>Guru</h3>
                 </div>
-                <div class="col-12 col-md-6 order-md-2 order-first">
+                <div class="order-first col-12 col-md-6 order-md-2">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Guru</a></li>
@@ -22,7 +22,7 @@
                         <div class="card-body">
                             {{-- button add --}}
                             <div class="mb-3 d-md-flex justify-content-md-between">
-                                <button type="button" class="btn btn-primary text-white ">Tambah</button>
+                                <button type="button" class="text-white btn btn-primary ">Tambah</button>
                             </div>
 
                             @livewire('components.table', [
@@ -31,19 +31,20 @@
                                     'name' => 'Name',
                                     'email' => 'Email',
                                     'email_verified_at' => 'Email Verified At',
-                                    'role' => 'Role',
+                                    'roles' => 'Roles',
                                 ],
                                 'searchColumns' => ['name', 'email'],
                                 'sortColumn' => 'name',
                                 'customColumns' => [
-                                    'role' => [
-                                        'value' => ['admin', 'user'],
-                                        'class' => ['badge bg-light-success', 'badge bg-light-warning'],
-                                    ],
+                                    // 'role' => [
+                                    //     'value' => ['admin', 'user'],
+                                    //     'class' => ['badge bg-light-success', 'badge bg-light-warning'],
+                                    // ],
                                     'email' => [
                                         'class' => ['badge bg-light-success'],
                                     ],
                                 ],
+                                'withRelations' => ['roles'],
                             
                                 'actions' => [
                                     'view' => [

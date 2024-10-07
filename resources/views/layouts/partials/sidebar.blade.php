@@ -3,8 +3,11 @@
     {{-- <x-mazer-sidebar-item icon="bi bi-stack" :link="route('admin.dashboard')" name="Components">
         <x-mazer-sidebar-subitem :link="route('component.accordion')" name="Accordion" :active="true" />
     </x-mazer-sidebar-item> --}}
-    <li class="sidebar-title">Data Master</li>
-    <x-mazer-sidebar-item icon="bi bi-tags-fill" :link="route('counter')" name="Guru" :active="request()->routeIs('counter') ? 'active' : ''" />
+    @role('Super Admin')
+        <li class="sidebar-title">Data Master</li>
+        <x-mazer-sidebar-item icon="bi bi-tags-fill" :link="route('counter')" name="Guru" :active="request()->routeIs('counter') ? 'active' : ''" />
+    @endrole
+    {{-- <x-mazer-sidebar-item icon="bi bi-people-fill" :link="" name="Siswa" :active="request()->routeIs('siswa') ? 'active' : ''" /> --}}
     {{-- <x-mazer-sidebar-item icon="bi bi-car-front-fill" :link="route('transportasi.index')" name="Transportasi" :active="request()->routeIs('transportasi.index') ? 'active' : ''" />
     <x-mazer-sidebar-item icon="bi bi-signpost-2" :link="route('rute.index')" name="Rute" :active="request()->routeIs('rute.index') ? 'active' : ''" />
     <x-mazer-sidebar-item icon="bi bi-bank2" :link="route('bank.index')" name="Bank" :active="request()->routeIs('bank.index') ? 'active' : ''" />
