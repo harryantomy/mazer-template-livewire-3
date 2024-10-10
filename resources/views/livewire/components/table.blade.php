@@ -1,14 +1,14 @@
 <div>
-    <div class="d-grid justify-content-center mb-3 d-md-flex justify-content-md-between">
-        <div class="d-flex mb-1 ">
-            <p class="my-auto px-1">Show</p>
+    <div class="mb-3 d-grid justify-content-center d-md-flex justify-content-md-between">
+        <div class="mb-1 d-flex ">
+            <p class="px-1 my-auto">Show</p>
             <select wire:model.live="perPage" class="form-select form-select-sm">
                 <option>10</option>
                 <option>25</option>
                 <option>50</option>
                 <option>100</option>
             </select>
-            <p class="my-auto px-1">Entries</p>
+            <p class="px-1 my-auto">Entries</p>
         </div>
         <div>
             <input wire:model.live="searchTerm" type="text" class="form-control" placeholder="Search...">
@@ -82,10 +82,19 @@
                                         {{ $itemValue }}
                                         <!-- Jika tidak ada kelas yang sesuai, tampilkan nilai biasa -->
                                     @endif
+                                @elseif (isset($withRelations) && in_array($key, $withRelations))
+                                    @foreach ($item->$key as $relation)
+                                        {{ $relation->name }}
+                                    @endforeach
                                 @else
                                     {{ $item->$key }}
                                     <!-- Jika kolom tidak ada dalam customColumns, tampilkan nilai biasa -->
                                 @endif
+
+                                {{-- relasi dibuat global jangan selalu menggil name --}}
+
+
+
                             </td>
                         @endforeach
                         @if (count($actions) > 0)

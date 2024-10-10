@@ -104,7 +104,7 @@ new class extends Component {
                         </h6>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="">
+                        <a class="dropdown-item" href="{{ route('profile') }}" wire:navigate>
                             <i class="icon-mid bi bi-person me-2"></i>
                             My Profile
                         </a>

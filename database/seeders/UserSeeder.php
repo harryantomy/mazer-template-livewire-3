@@ -13,10 +13,11 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10000)->create();
+        // User::factory(100)->create();
 
         $superAdmin = User::create([
             'name' => 'Super Admin',
+            'username' => 'superadmin',
             'email' => 'superadmin@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
@@ -25,6 +26,7 @@ class UserSeeder extends Seeder
 
         $operator = User::create([
             'name' => 'Operator',
+            'username' => 'operator',
             'email' => 'operator@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
@@ -33,6 +35,7 @@ class UserSeeder extends Seeder
 
         $guru = User::create([
             'name' => 'Harry Antomy',
+            'username' => 'hariantomy',
             'email' => 'hariantomi@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),

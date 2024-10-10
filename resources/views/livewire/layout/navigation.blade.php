@@ -7,6 +7,9 @@ new class extends Component {
     /**
      * Log the current user out of the application.
      */
+    // merefresh komponent ketika event profileUpdated dipancarkan
+    protected $listeners = ['profileUpdated' => '$refresh', 'photoUpdated' => '$refresh'];
+
     public function logout(Logout $logout): void
     {
         $logout();
@@ -92,7 +95,13 @@ new class extends Component {
                         </div>
                         <div class="user-img d-flex align-items-center">
                             <div class="avatar avatar-lg">
-                                <img src="{{ asset('assets/compiled/jpg/2.jpg') }}" alt="">
+                                @if (!auth()->user()->profile_photo_path)
+                                    <img class="rounded-lg img-fluid" src="{{ asset('assets/compiled/jpg/2.jpg') }}"
+                                        alt="">
+                                @else
+                                    <img class="rounded-lg img-fluid" on='profileUpdated'
+                                        src="{{ Storage::url(auth()->user()->profile_photo_path) }}" alt="">
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -105,7 +114,7 @@ new class extends Component {
                         </h6>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="">
+                        <a class="dropdown-item" href="{{ route('profile') }}" wire:navigate>
                             <i class="icon-mid bi bi-person me-2"></i>
                             My Profile
                         </a>

@@ -96,8 +96,8 @@ new #[Layout('layouts.guest')] class extends Component {
                 <p class="mb-5 ">Silakan Login Menggunakan Akun Saat Pendaftaran</p>
                 <form wire:submit="login">
                     <div class="mb-4 form-group position-relative has-icon-left">
-                        <input wire:model="form.email" id="email" class="form-control form-control-lg"
-                            placeholder="Email" type="email" name="email" autofocus autocomplete="email">
+                        <input wire:model="form.username" id="username" class="form-control form-control-lg"
+                            placeholder="Username" type="text" name="username" autofocus autocomplete="username">
                         <div class="form-control-icon">
                             <i class="bi bi-person"></i>
                         </div>

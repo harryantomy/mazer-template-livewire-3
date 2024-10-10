@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('assets/extensions/flatpickr/flatpickr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/compiled/css/table-datatable-jquery.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/compiled/css/app.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/compiled/css/app.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('assets/compiled/css/app-dark.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/compiled/css/iconly.css') }}">
     {{-- @vite(['resources/sass/app.scss', 'resources/sass/themes/dark/app-dark.scss', 'resources/js/app.js']) --}}
@@ -58,6 +58,28 @@
     <script src="{{ asset('assets/static/js/pages/date-picker.js') }}" data-navigate-once></script>
     <script src="{{ asset('assets/static/js/pages/form-element-select.js') }}" data-navigate-once></script>
     {{-- @vite(['resources/js/app.js']) --}}
+
+    <script data-navigate-once>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('showToast', (event) => {
+                Toast.fire({
+                    icon: event.type,
+                    title: event.message
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
